@@ -1,0 +1,40 @@
+{
+  "name": "@krmcbride/hexample-tsnode-boot",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "engines": {
+    "node": ">=14.15.0"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run build-ts",
+    "build-ts": "tsc",
+    "clean": "rimraf ./dist",
+    "lint": "eslint . --ext .js,.ts --fix --ignore-path ../.gitignore",
+    "serve": "npm run clean && npm run build && cd ../ && sls offline --httpPort 8080 --allowCache",
+    "test": "jest --detectOpenHandles --verbose --runInBand",
+    "test-ci": "npm run test -- --config jest.ci.config.ts",
+    "watch": "npm run clean && npm run build && concurrently -k --names \"tsc,sls\" \"npm run watch-tsc\" \"npm run watch-sls\"",
+    "watch-tsc": "tsc -b -w"
+  },
+  "dependencies": {
+    "@krmcbride/plankton": "^1.0.0",
+    "@krmcbride/plankton-data-mongodb": "^1.0.0",
+    "@krmcbride/plankton-serverless": "^1.0.0",
+    "@krmcbride/hexample-tsnode-api": "*",
+    "@krmcbride/hexample-tsnode-core": "*",
+    "@krmcbride/hexample-tsnode-data": "*",
+    "type-graphql": "^1.1.1",
+    "typedi": "^0.10.0"
+  },
+  "devDependencies": {
+    "@types/supertest": "^2.0.12",
+    "dotenv": "^16.0.0",
+    "supertest": "^6.2.3"
+  }
+}

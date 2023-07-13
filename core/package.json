@@ -1,0 +1,25 @@
+{
+  "name": "@krmcbride/hexample-tsnode-core",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "engines": {
+    "node": ">=14.15.0"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run build-ts",
+    "build-ts": "tsc",
+    "clean": "rimraf ./dist",
+    "lint": "eslint . --ext .js,.ts --fix --ignore-path ../.gitignore",
+    "test": "jest --detectOpenHandles --verbose --runInBand",
+    "test-ci": "npm run test"
+  },
+  "dependencies": {
+    "@krmcbride/plankton-data-commons": "^1.0.0"
+  }
+}
