@@ -1,1 +1,1 @@
-export { api, preflight } from '@krmcbride/plankton-serverless/dist/src/boot';
+export { api, preflight } from '@krmcbride/plankton-server/dist/src/boot';

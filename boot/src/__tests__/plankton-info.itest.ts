@@ -5,12 +5,9 @@ describe('plankton-info', () => {
   let request: SuperTest<Test>;
   let emitter: EventEmitter;
   beforeAll(async () => {
-    const { api, preflight } = await import(
-      '@krmcbride/plankton-serverless/dist/src/boot'
-    );
+    await import('@krmcbride/plankton-server/dist/src/boot');
     request = supertest(await api.app);
     emitter = (await import('@krmcbride/plankton')).emitter;
-    return preflight.checkHealth();
   });
   afterAll(() => {
     const promises: Promise<void>[] = [];
